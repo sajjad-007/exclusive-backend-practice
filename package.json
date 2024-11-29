@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongodb": "^6.11.0",
+    "mongoose": "^8.8.2",
+    "nodemailer": "^6.9.16",
+    "nodemon": "^3.1.7",
+    "number-generator": "^4.0.6"
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "back-end practice",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "sajjad",
+  "license": "ISC"
+}
