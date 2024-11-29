@@ -4,7 +4,7 @@ const { emailChecker, passwordChecker, numberChecker } = require("../utilitis/re
 const {userModal} = require("../modal/modalSchema")
 const {sendMail} = require("../helper/nodemailer")
 const { otpgenetor } = require("../helper/otpGenetor")
-const {bcryptPassword} = require("../helper/bcrypt")
+const {bcryptPassword,bcryptComparePassword} = require("../helper/bcrypt")
 
 const registrationControl = async(req,res) => {
     try {
@@ -80,18 +80,32 @@ const login = async(req,res) => {
             .json(new errorResponse(404,`Email, Password or phone number format does'nt match`,true,null))
 
         }
-        const loginUser = await userModal.find({
+        const checkUserEmailphoneNumber = await userModal.findOne({
             $or: [
                 {email :emailOrphoneNumber},
                 {phoneNumber : emailOrphoneNumber}
             ]
         })
-        console.log(loginUser);
         
+        if (checkUserEmailphoneNumber) {
+            const checkisPasswordCorrect = await bcryptComparePassword(password,checkUserEmailphoneNumber.password)
+            if (!checkisPasswordCorrect) {
+                return res
+                .status(401)
+                .json(new errorResponse(401,`Invalid email or password`,null,true,))
+            }else{
+                return res
+                .status(200)
+                .json( new successResponse(200,"login successful",null,false))
+            }
+        }else{
+            return res
+            .status(500)
+            .json(new errorResponse(500,`Invalid email or password`,null,true,))
+        }
         
-        return res
-            .status(200)
-            .json( new successResponse(200,"Registration successful",null,false))
+
+        
     } catch (error) {
         return res
          .status(500)

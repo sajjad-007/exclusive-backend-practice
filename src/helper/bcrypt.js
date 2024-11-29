@@ -4,9 +4,11 @@ const bcryptPassword = async ( PlaintextPassword) => {
 
     return bcrypt.hash(PlaintextPassword, 10)
 }
-// const bcryptComparePass = async (PlaintextPassword,password) => {
+const bcryptComparePassword = async (PlaintextPassword,hassPassword) => {
 
-//     bcrypt.compare(PlaintextPassword, password);
-// }
+    return bcrypt.compare(PlaintextPassword, hassPassword);
+    // console.log(bcrypt.compare(PlaintextPassword, hassPassword));
+    
+}
 
-module.exports = {bcryptPassword}
+module.exports = {bcryptPassword, bcryptComparePassword}
