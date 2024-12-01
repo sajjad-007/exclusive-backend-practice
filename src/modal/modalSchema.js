@@ -32,6 +32,9 @@ const MySchema = new Schema({
     otp: {
         type: Number,
     },
+    expireOtp: {
+        type: Number,
+    },
     address:{
         type: String,
         required: true,

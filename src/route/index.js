@@ -1,8 +1,8 @@
 const express = require("express")
 const route = express.Router() 
-const registration = require("./regRoute")
+const mainRoutes = require("./regRoute")
 
-route.use("/home/auth",registration)
+route.use("/home/auth",mainRoutes)
 
 
 module.exports = route;
