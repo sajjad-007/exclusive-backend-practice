@@ -9,5 +9,7 @@ app.use(allRoute)
 // to parse a data  into cookie and send it the server
 app.use(cookieParser())
 
+//static image gulo local browser e dekhar jonno
+app.use("/static/image",express.static("public/temp")) 
 
 module.exports = {app}
